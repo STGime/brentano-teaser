@@ -1,47 +1,18 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+// 1. Import your LandingPage component
+import LandingPage from './views/LandingPage.vue' // Adjust the path if you saved it elsewhere
+                                                  // e.g., './components/LandingPage.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <!-- 2. Use the LandingPage component here -->
+  <!--    Remove ALL other default template content -->
+  <LandingPage />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+<style>
+/* You can remove the default styles that might have been here */
+/* Tailwind will handle most styling via classes */
+/* Or keep global styles if needed, but they might conflict */
+/* It's often best to start clean here */
 </style>

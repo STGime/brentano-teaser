@@ -1,11 +1,11 @@
 <template>
-    <div class="min-h-screen bg-white flex flex-col items-center justify-center py-12 px-4 text-center">
+    <div class="min-h-screen bg-blue-50 flex flex-col items-center justify-center py-12 px-4 text-center">
       <div class="w-full max-w-6xl mx-auto flex flex-col items-center">
         <!-- App Logo -->
         <img class="mx-auto h-16 w-auto" src="/src/logo_image.png" alt="Brentano App Logo">
         
-        <h1 class="mt-6 text-center text-4xl font-extrabold text-gray-900">
-          Brentano App
+        <h1 class="mt-6 text-center text-5xl font-extrabold text-gray-900">
+          Brentano App.
         </h1>
         <p class="mt-3 text-center text-xl text-primary-600 font-semibold">
           Understand what is important.
@@ -115,63 +115,65 @@
               </div>
             </div>
   
-            <form v-if="!signupSuccess" class="mt-6 space-y-6" @submit.prevent="handleSignup">
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <div class="mt-1">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    autocomplete="name"
-                    v-model="formData.name"
-                    @blur="validateName"
-                    :class="[
-                      'appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm',
-                      errors.name ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-primary-500 focus:border-primary-500'
-                    ]"
-                  />
-                </div>
-                <p v-if="errors.name" class="mt-2 text-sm text-red-600">{{ errors.name }}</p>
-              </div>
-  
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                <div class="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    v-model="formData.email"
-                    @blur="validateEmail"
-                    :class="[
-                      'appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm',
-                      errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-primary-500 focus:border-primary-500'
-                    ]"
-                  />
-                </div>
-                <p v-if="errors.email" class="mt-2 text-sm text-red-600">{{ errors.email }}</p>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  :disabled="loading || !isFormPotentiallyValid"
-                  class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            <form
+                    class="space-y-6"
+                    method="POST"  
+                    action="https://formspree.io/f/mwplrbok" 
+                    @submit="checkForSuccess" 
                 >
-                  <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Notify Me!
-                </button>
-              </div>
-            </form>
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <div class="mt-1">
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                required
+                                v-model="formData.name"
+                                @blur="validateName"
+                                :class="[
+                                    'appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm',
+                                    errors.name ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-primary-500 focus:border-primary-500'
+                                ]"
+                                />
+                        </div>
+                        <!-- Error message -->
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <div class="mt-1">
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                required
+                                v-model="formData.email"
+                                @blur="validateEmail"
+                                :class="[
+                                    'appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm',
+                                    errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-primary-500 focus:border-primary-500'
+                                ]"
+                                />
+                        </div>
+                        <!-- Error message -->
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            :disabled="loading || !isFormPotentiallyValid"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                            <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Notify Me!
+                            </button>
+                        
+                    </div>
+                </form>
           </div>
         </div>
       </div>
@@ -237,48 +239,47 @@
     return formData.name.trim() !== '' && formData.email.trim() !== '';
   });
   
-  const handleSignup = async () => {
-    signupSuccess.value = false;
-    signupError.value = null;
-  
-    // Validate form before proceeding
-    if (!validateForm()) {
-        return; // Stop submission if validation fails
-    }
-  
-    loading.value = true;
-  
-    // --- Simulate API Call ---
-    // Replace this with your actual API call to save the email/name
-    console.log('Submitting beta sign-up:', { name: formData.name, email: formData.email });
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
-  
-    try {
-      // --- Replace with actual API call ---
-      // const response = await fetch('/api/beta-signup', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ name: formData.name, email: formData.email })
-      // });
-      // if (!response.ok) {
-      //   throw new Error('Failed to sign up. Please try again.');
-      // }
-      // --- End of actual API call section ---
-  
-      // If successful:
-      signupSuccess.value = true;
-      formData.name = ''; // Clear form
-      formData.email = '';
-      errors.name = null; // Clear errors
-      errors.email = null;
-  
-    } catch (error) {
-      console.error('Signup error:', error);
-      signupError.value = error.message || 'An unexpected error occurred. Please try again later.';
-    } finally {
-      loading.value = false;
-    }
-  };
+  const handleSignup = async (event) => {
+     event.preventDefault(); // Prevent default POST
+     if (!validateForm()) return;
+     loading.value = true;
+     signupSuccess.value = false;
+     signupError.value = null;
+
+     const form = event.target;
+     const data = new FormData(form);
+
+     try {
+         const response = await fetch(form.action, {
+             method: form.method,
+             body: data,
+             headers: {
+                 'Accept': 'application/json' // Important for Formspree AJAX
+             }
+         });
+         if (response.ok) {
+             signupSuccess.value = true;
+             formData.name = '';
+             formData.email = '';
+             errors.name = null;
+             errors.email = null;
+         } else {
+             // Try to get error from Formspree response
+             const responseData = await response.json();
+             if (responseData.errors) {
+                 signupError.value = responseData.errors.map(err => err.message).join(', ');
+             } else {
+                 throw new Error('Form submission failed.');
+             }
+         }
+     } catch (error) {
+         console.error('Signup error:', error);
+         signupError.value = error.message || 'An unexpected error occurred.';
+     } finally {
+         loading.value = false;
+     }
+ };
+
   </script>
   
   <style scoped>

@@ -14,12 +14,23 @@
           Tired of searching through endless emails for that one piece of information? Brentano transforms your inbox into an intelligent, searchable knowledge base.
         </p>
   
-        <!-- Video section moved up as requested -->
-        <div class="mt-8 w-full">
+               <!-- Video section moved up as requested -->
+               <div class="mt-8 w-full">
           <h3 class="text-center text-xl font-semibold text-gray-800 mb-4">See Brentano in Action:</h3>
-          <div class="aspect-video bg-gray-300 rounded-lg flex items-center justify-center max-w-4xl mx-auto">
-            <span class="text-gray-500 font-medium text-lg">(Explanation Video Coming Soon)</span>
-            <!-- You can replace this with an actual iframe embed later -->
+          <!-- Use Synthesia's embed structure -->
+          <!-- Added max-w-4xl mx-auto and optional styling classes -->
+          <div
+            class="max-w-4xl mx-auto rounded-lg shadow-md overflow-hidden bg-black" 
+            style="position: relative; overflow: hidden; aspect-ratio: 1920/1080"
+          >
+            <iframe
+              src="https://share.synthesia.io/embeds/videos/691949a0-02a0-4e46-8e2e-05e836fe3fec"
+              loading="lazy"
+              title="Synthesia video player - Brentano App teaser"
+              allowfullscreen
+              allow="encrypted-media; fullscreen;"
+              style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;">
+            </iframe>
           </div>
         </div>
   
